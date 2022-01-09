@@ -38,9 +38,7 @@ public class Movie {
   public String getTitle() {
     return _title;
   }
-
-
-  //determine amounts for each line
+  
   double getCharge(int daysRented) {
     return _price.getCharge(daysRented);
 
