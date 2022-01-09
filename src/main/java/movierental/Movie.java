@@ -7,19 +7,36 @@ public class Movie {
   public static final int REGULAR = 0;
 
   private String _title;
-  private int _priceCode;
+  private Price _price;
 
   public Movie(String title, int priceCode) {
     _title = title;
-    _priceCode = priceCode;
+    setPriceCode(priceCode);
   }
 
   public int getPriceCode() {
-    return _priceCode;
+    return _price.getPriceCode();
   }
 
   public void setPriceCode(int arg) {
-    _priceCode = arg;
+    switch (arg) {
+      case Movie.REGULAR: {
+        _price = new RegularPrice();
+        break;
+      }
+      case Movie.CHILDRENS: {
+        _price = new ChildrenPrice();
+        break;
+      }
+      case Movie.NEW_RELEASE: {
+        _price = new NewReleasePrice();
+        break;
+      }
+      default: {
+        throw new IllegalArgumentException("Invalid price code");
+      }
+
+    }
   }
 
   public String getTitle() {
@@ -56,5 +73,5 @@ public class Movie {
       return 1;
     }
   }
-  
+
 }
