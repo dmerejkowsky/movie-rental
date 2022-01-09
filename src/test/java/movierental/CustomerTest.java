@@ -1,6 +1,7 @@
 package movierental;
 
 import org.junit.Test;
+import static org.junit.Assert.*;
 
 public class CustomerTest {
 
@@ -27,5 +28,4 @@ public class CustomerTest {
 
         assertEquals(expected, customer.statement());
     }
-import static org.junit.Assert.*;
 }
