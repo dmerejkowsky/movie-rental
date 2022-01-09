@@ -1,6 +1,4 @@
 package movierental;
-import static junit.framework.Assert.assertEquals;
-import static junit.framework.Assert.assertNotNull;
 
 import org.junit.Test;
 
@@ -29,4 +27,5 @@ public class CustomerTest {
 
         assertEquals(expected, customer.statement());
     }
+import static org.junit.Assert.*;
 }
