@@ -47,15 +47,11 @@ public class Movie {
   //determine amounts for each line
   double getCharge(int daysRented) {
     return _price.getCharge(daysRented);
- 
+
   }
 
   int getFrequentRenterPoints(int daysRented) {
-    if ((getPriceCode() == Movie.NEW_RELEASE) && daysRented > 1)
-      return 2;
-    else {
-      return 1;
-    }
+    return _price.getFrequentRenterPoints(daysRented);
   }
 
 }
