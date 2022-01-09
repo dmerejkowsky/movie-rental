@@ -5,7 +5,9 @@ public abstract interface Price {
 
   abstract double getCharge(int daysRented);
 
-  abstract int getFrequentRenterPoints(int daysRented);
+  default int getFrequentRenterPoints(int daysRented) {
+    return 1;
+  }
 }
 
 class ChildrenPrice implements Price {
@@ -22,10 +24,6 @@ class ChildrenPrice implements Price {
     return result;
   }
 
-  @Override
-  public int getFrequentRenterPoints(int daysRented) {
-    return 1;
-  }
 }
 
 class NewReleasePrice implements Price {
@@ -41,11 +39,7 @@ class NewReleasePrice implements Price {
 
   @Override
   public int getFrequentRenterPoints(int daysRented) {
-    if (daysRented > 1) {
-      return 2;
-    } else {
-      return 1;
-    }
+    return daysRented > 1 ? 2 : 1;
   }
 }
 
@@ -61,10 +55,5 @@ class RegularPrice implements Price {
     if (daysRented > 2)
       result += (daysRented - 2) * 1.5;
     return result;
-  }
-
-  @Override
-  public int getFrequentRenterPoints(int daysRented) {
-    return 1;
   }
 }
