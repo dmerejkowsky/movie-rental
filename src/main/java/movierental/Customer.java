@@ -21,23 +21,42 @@ public class Customer {
   }
 
   public String statement() {
-    double totalAmount = 0;
-    int frequentRenterPoints = 0;
     String result = "Rental Record for " + getName() + "\n";
 
-    for (Rental each : _rentals) {
-      frequentRenterPoints += each.getFrequentRenterPoints();
-
-      // show figures for this rental
-      result += "\t" + each.getMovie().getTitle() + "\t" + String.valueOf(each.getCharge()) + "\n";
-      totalAmount += each.getCharge();
+    for (Rental rental : _rentals) {
+      Movie movie = rental.getMovie();
+      double charge = rental.getCharge();
+      result +=
+        "" +
+          "\t" + movie.getTitle() +
+          "\t" + String.valueOf(charge) +
+          "\n";
     }
 
+    double totalAmount = getTotalCharge();
+    int frequentRenterPoints = getTotalPoints();
     // add footer lines
     result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
     result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
 
     return result;
+  }
+
+  double getTotalCharge() {
+    double res = 0;
+    for (Rental rental : _rentals) {
+      res += rental.getCharge();
+    }
+    return res;
+  }
+
+
+  int getTotalPoints() {
+    int res = 0;
+    for (Rental each : _rentals) {
+      res += each.getFrequentRenterPoints();
+    }
+    return res;
   }
 
 }
