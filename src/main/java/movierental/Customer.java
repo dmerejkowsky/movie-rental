@@ -21,27 +21,14 @@ public class Customer {
   }
 
   public String statement() {
-    String result = "Rental Record for " + getName() + "\n";
-
-    for (Rental rental : _rentals) {
-      Movie movie = rental.getMovie();
-      double charge = rental.getCharge();
-      result +=
-        "" +
-          "\t" + movie.getTitle() +
-          "\t" + String.valueOf(charge) +
-          "\n";
-    }
-
     double totalAmount = getTotalCharge();
     int frequentRenterPoints = getTotalPoints();
-    // add footer lines
-    result += "Amount owed is " + String.valueOf(totalAmount) + "\n";
-    result += "You earned " + String.valueOf(frequentRenterPoints) + " frequent renter points";
+    String customerName = getName();
 
-    return result;
+    Report report = new TextReport();
+    return report.generate(_rentals, customerName, totalAmount, frequentRenterPoints);
   }
-
+  
   double getTotalCharge() {
     double res = 0;
     for (Rental rental : _rentals) {
