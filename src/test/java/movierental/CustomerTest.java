@@ -38,10 +38,10 @@ public class CustomerTest {
     String expected = """
       <h1>Rental Record for <em>Bob</em></h1>
       <table>
-      <tr><td>Ran</td><td>2.000000</td></tr>
+      <tr><td>Ran</td><td>2.0</td></tr>
       <tr><td>Jaws</td><td>2</td></tr>
       </table>
-      <p>Amount owed is <em>2.000000</em></p>
+      <p>Amount owed is <em>2.0</em></p>
       <p>You earned <em>1</em> frequent renter points</p>
       """;
 

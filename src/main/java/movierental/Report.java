@@ -62,7 +62,7 @@ class HtmlReport extends Report {
     Movie movie = rental.getMovie();
     String movieTitle = movie.getTitle();
     int daysRended = rental.getDaysRented();
-    String row1 = String.format("<tr><td>Ran</td><td>%f</td></tr>\n", rental.getCharge());
+    String row1 = String.format("<tr><td>Ran</td><td>%.1f</td></tr>\n", rental.getCharge());
     String row2 = String.format("<tr><td>%s</td><td>%d</td></tr>\n", movieTitle, daysRended);
     return row1 + row2;
   }
@@ -70,7 +70,7 @@ class HtmlReport extends Report {
   @Override
   String footer(double totalAmount, int frequentRenterPoints) {
     String res = "</table>\n";
-    res += String.format("<p>Amount owed is <em>%f</em></p>\n", totalAmount);
+    res += String.format("<p>Amount owed is <em>%.1f</em></p>\n", totalAmount);
     res += String.format("<p>You earned <em>%d</em> frequent renter points</p>\n", frequentRenterPoints);
     return res;
   }
