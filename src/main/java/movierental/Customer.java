@@ -20,15 +20,15 @@ public class Customer {
     return _name;
   }
 
-  public String statement() {
+  public String statement(Report report) {
     double totalAmount = getTotalCharge();
     int frequentRenterPoints = getTotalPoints();
     String customerName = getName();
-
-    Report report = new TextReport();
+    
     return report.generate(_rentals, customerName, totalAmount, frequentRenterPoints);
   }
-  
+
+
   double getTotalCharge() {
     double res = 0;
     for (Rental rental : _rentals) {

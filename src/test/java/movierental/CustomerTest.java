@@ -7,7 +7,7 @@ import static org.junit.Assert.assertEquals;
 public class CustomerTest {
 
   @Test
-  public void test() {
+  public void testTextReport() {
     Customer customer = new Customer("Bob");
     customer.addRental(new Rental(new Movie("Jaws", Movie.REGULAR), 2));
     customer.addRental(new Rental(new Movie("Golden Eye", Movie.REGULAR), 3));
@@ -27,6 +27,24 @@ public class CustomerTest {
       "Amount owed is 19.0\n" +
       "You earned 7 frequent renter points";
 
-    assertEquals(expected, customer.statement());
+    assertEquals(expected, customer.statement(new TextReport()));
+  }
+
+  @Test
+  public void testHtmlRecord() {
+    Customer customer = new Customer("Bob");
+    customer.addRental(new Rental(new Movie("Jaws", Movie.REGULAR), 2));
+
+    String expected = """
+      <h1>Rental Record for <em>Bob</em></h1>
+      <table>
+      <tr><td>Ran</td><td>2.000000</td></tr>
+      <tr><td>Jaws</td><td>2</td></tr>
+      </table>
+      <p>Amount owed is <em>2.000000</em></p>
+      <p>You earned <em>1</em> frequent renter points</p>
+      """;
+
+    assertEquals(expected, customer.statement(new HtmlReport()));
   }
 }

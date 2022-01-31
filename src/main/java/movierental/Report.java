@@ -50,3 +50,28 @@ class TextReport extends Report {
   }
 }
 
+class HtmlReport extends Report {
+  @Override
+  String header(String customerName) {
+    String h1 = String.format("<h1>Rental Record for <em>%s</em></h1>\n", customerName);
+    return h1 + "<table>\n";
+  }
+
+  @Override
+  String row(Rental rental) {
+    Movie movie = rental.getMovie();
+    String movieTitle = movie.getTitle();
+    int daysRended = rental.getDaysRented();
+    String row1 = String.format("<tr><td>Ran</td><td>%f</td></tr>\n", rental.getCharge());
+    String row2 = String.format("<tr><td>%s</td><td>%d</td></tr>\n", movieTitle, daysRended);
+    return row1 + row2;
+  }
+
+  @Override
+  String footer(double totalAmount, int frequentRenterPoints) {
+    String res = "</table>\n";
+    res += String.format("<p>Amount owed is <em>%f</em></p>\n", totalAmount);
+    res += String.format("<p>You earned <em>%d</em> frequent renter points</p>\n", frequentRenterPoints);
+    return res;
+  }
+}
